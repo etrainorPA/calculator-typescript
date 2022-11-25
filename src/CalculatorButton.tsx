@@ -1,14 +1,13 @@
 interface CalculatorButtonProps {
-    buttonText : string
+  buttonText: string;
 }
 
-const CalculatorButton = ({buttonText} : CalculatorButtonProps) => {
+const CalculatorButton = ({ buttonText }: CalculatorButtonProps) => {
+  return (
+    <div>
+      <button>{buttonText}</button>
+    </div>
+  );
+};
 
-    return(
-        <div>
-            <button>{buttonText}</button>
-        </div>
-    )
-}
-
-export default CalculatorButton
+export default CalculatorButton;
