@@ -1,7 +1,13 @@
 import { Box, Grid, TextField } from '@mui/material'
+import { useState } from 'react'
 import CalculatorButton from './CalculatorButton'
+import Calculations from './CalculatorFunctions'
+import './Calculator.css'
 
 function CalculatorBody() {
+    const calculations = new Calculations()
+    const [displayNumber, setDisplayNumber] = useState(0)
+    const [inputNumber, setInputNumber] = useState(0)
     return (
         <div
             id="calculator-body"
@@ -20,15 +26,15 @@ function CalculatorBody() {
             >
                 <Grid container>
                     <Grid item xs={12} minHeight={150}>
-                        <div style={{ marginTop: '20px', padding: '15px' }}>
+                        <div id="display-container-div">
                             <TextField
-                                id="standard-basic"
-                                label="Standard"
+                                id="display-number-text"
                                 variant="standard"
                                 fullWidth
                                 color="primary"
                                 focused
                                 disabled
+                                value={displayNumber}
                             />
                         </div>
                     </Grid>

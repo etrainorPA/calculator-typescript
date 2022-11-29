@@ -13,14 +13,13 @@ interface ButtonProps {
 
 const NumberButton = ({ buttonText }: ButtonProps) => {
     return (
-        <div style={{ padding: '5px' }}>
+        <div className="button-container">
             <Button
                 variant="contained"
-                className="number-button"
+                className="number-button calc-button"
                 size="large"
                 color="primary"
                 fullWidth={true}
-                style={{ minHeight: '80px', minWidth: '40px' }}
                 onClick={() => {
                     ButtonClicked(buttonText, false)
                 }}
@@ -36,14 +35,13 @@ const FunctionButton = ({ buttonText, isEqualSign }: ButtonProps) => {
         isEqualSign = false
     }
     return (
-        <div style={{ padding: '5px' }}>
+        <div className="button-container">
             <Button
                 variant="contained"
-                className="function-button"
+                className="function-button calc-button"
                 size="large"
                 color={isEqualSign ? 'warning' : 'secondary'}
                 fullWidth={true}
-                style={{ minHeight: '80px', minWidth: '40px' }}
                 onClick={() => {
                     ButtonClicked(buttonText, true, isEqualSign)
                 }}
