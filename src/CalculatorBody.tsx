@@ -25,7 +25,12 @@ function CalculatorBody() {
                 }}
             >
                 <Grid container>
-                    <Grid item xs={12} minHeight={150}>
+                    <Grid
+                        item
+                        xs={12}
+                        minHeight={150}
+                        data-testid="calculator-number-display"
+                    >
                         <div id="display-container-div">
                             <TextField
                                 id="display-number-text"
@@ -40,7 +45,7 @@ function CalculatorBody() {
                     </Grid>
                     <Grid item xs={12} minHeight={75}>
                         <Grid container>
-                            <Grid item xs={3}>
+                            <Grid item xs={3} data-testid="button-seven">
                                 <CalculatorButton
                                     buttonText="7"
                                     isNumber={true}
@@ -83,7 +88,7 @@ function CalculatorBody() {
                                     displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={3} data-testid="button-five">
                                 <CalculatorButton
                                     buttonText="5"
                                     isNumber={true}
@@ -135,7 +140,7 @@ function CalculatorBody() {
                                     displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={3} data-testid="button-multiply">
                                 <CalculatorButton
                                     buttonText="x"
                                     isNumber={false}
@@ -153,7 +158,7 @@ function CalculatorBody() {
                                     displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={3} data-testid="button-equals">
                                 <CalculatorButton
                                     buttonText="="
                                     isNumber={false}
