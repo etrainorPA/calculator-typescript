@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, TextField } from '@mui/material'
 import CalculatorButton from './CalculatorButton'
 
 function CalculatorBody() {
@@ -20,7 +20,17 @@ function CalculatorBody() {
             >
                 <Grid container>
                     <Grid item xs={12} minHeight={150}>
-                        <p>Display</p>
+                        <div style={{ marginTop: '20px', padding: '15px' }}>
+                            <TextField
+                                id="standard-basic"
+                                label="Standard"
+                                variant="standard"
+                                fullWidth
+                                color="primary"
+                                focused
+                                disabled
+                            />
+                        </div>
                     </Grid>
                     <Grid item xs={12} minHeight={75}>
                         <Grid container>
@@ -43,7 +53,10 @@ function CalculatorBody() {
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
-                                +
+                                <CalculatorButton
+                                    buttonText="+"
+                                    isNumber={false}
+                                ></CalculatorButton>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -68,7 +81,10 @@ function CalculatorBody() {
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
-                                -
+                                <CalculatorButton
+                                    buttonText="-"
+                                    isNumber={false}
+                                ></CalculatorButton>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -93,7 +109,10 @@ function CalculatorBody() {
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
-                                x
+                                <CalculatorButton
+                                    buttonText="x"
+                                    isNumber={false}
+                                ></CalculatorButton>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -105,11 +124,24 @@ function CalculatorBody() {
                                     isNumber={true}
                                 ></CalculatorButton>
                             </Grid>
-                            <Grid item xs={6}>
-                                =
+                            <Grid item xs={3}>
+                                <CalculatorButton
+                                    buttonText="="
+                                    isNumber={false}
+                                    isEqualSign={true}
+                                ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
-                                /
+                                <CalculatorButton
+                                    buttonText="+ / -"
+                                    isNumber={false}
+                                ></CalculatorButton>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <CalculatorButton
+                                    buttonText="/"
+                                    isNumber={false}
+                                ></CalculatorButton>
                             </Grid>
                         </Grid>
                     </Grid>
