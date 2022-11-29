@@ -13,3 +13,8 @@
 .button-container {
     padding: 5px;
 }
+
+#display-number-text {
+    text-align: end;
+    font-size: xx-large;
+}

@@ -44,24 +44,31 @@ function CalculatorBody() {
                                 <CalculatorButton
                                     buttonText="7"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
                                 <CalculatorButton
                                     buttonText="8"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
                                 <CalculatorButton
                                     buttonText="9"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
                                 <CalculatorButton
                                     buttonText="+"
                                     isNumber={false}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                         </Grid>
@@ -72,24 +79,32 @@ function CalculatorBody() {
                                 <CalculatorButton
                                     buttonText="4"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
                                 <CalculatorButton
                                     buttonText="5"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
                                 <CalculatorButton
                                     buttonText="6"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
                                 <CalculatorButton
                                     buttonText="-"
                                     isNumber={false}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                         </Grid>
@@ -100,18 +115,24 @@ function CalculatorBody() {
                                 <CalculatorButton
                                     buttonText="1"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
                                 <CalculatorButton
                                     buttonText="2"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
                                 <CalculatorButton
                                     buttonText="3"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
@@ -128,6 +149,8 @@ function CalculatorBody() {
                                 <CalculatorButton
                                     buttonText="0"
                                     isNumber={true}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
@@ -148,6 +171,13 @@ function CalculatorBody() {
                                     buttonText="/"
                                     isNumber={false}
                                 ></CalculatorButton>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} minHeight={75}>
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <h1>Add clear button here</h1>
                             </Grid>
                         </Grid>
                     </Grid>
