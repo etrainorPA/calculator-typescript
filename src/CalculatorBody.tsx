@@ -1,11 +1,11 @@
 import { Box, Grid, TextField } from '@mui/material'
 import { useState } from 'react'
 import CalculatorButton from './CalculatorButton'
-import Calculations from './CalculatorFunctions'
 import './Calculator.css'
+import CalculatorDisplay from './CalculatorDisplay'
 
+// Body will be the parent that will hold all component children
 function CalculatorBody() {
-    const calculations = new Calculations()
     const [displayNumber, setDisplayNumber] = useState(0)
     const [inputNumber, setInputNumber] = useState(0)
     return (
@@ -31,17 +31,9 @@ function CalculatorBody() {
                         minHeight={150}
                         data-testid="calculator-number-display"
                     >
-                        <div id="display-container-div">
-                            <TextField
-                                id="display-number-text"
-                                variant="standard"
-                                fullWidth
-                                color="primary"
-                                focused
-                                disabled
-                                value={displayNumber}
-                            />
-                        </div>
+                        <CalculatorDisplay
+                            displayNumber={displayNumber}
+                        ></CalculatorDisplay>
                     </Grid>
                     <Grid item xs={12} minHeight={75}>
                         <Grid container>
@@ -169,6 +161,8 @@ function CalculatorBody() {
                                 <CalculatorButton
                                     buttonText="+ / -"
                                     isNumber={false}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
@@ -182,7 +176,12 @@ function CalculatorBody() {
                     <Grid item xs={12} minHeight={75}>
                         <Grid container>
                             <Grid item xs={12}>
-                                <h1>Add clear button here</h1>
+                                <CalculatorButton
+                                    buttonText="AC"
+                                    isNumber={false}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
+                                ></CalculatorButton>
                             </Grid>
                         </Grid>
                     </Grid>

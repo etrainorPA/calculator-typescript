@@ -1,5 +1,4 @@
 import { Button } from '@mui/material'
-import { couldStartTrivia } from 'typescript'
 
 interface ButtonDeciderProps {
     buttonText: string
@@ -45,7 +44,12 @@ const NumberButton = ({
     )
 }
 
-const FunctionButton = ({ buttonText, isEqualSign }: ButtonProps) => {
+const FunctionButton = ({
+    buttonText,
+    isEqualSign,
+    setDisplayNumber,
+    displayNumber,
+}: ButtonProps) => {
     if (isEqualSign === undefined) {
         isEqualSign = false
     }
@@ -58,7 +62,13 @@ const FunctionButton = ({ buttonText, isEqualSign }: ButtonProps) => {
                 color={isEqualSign ? 'warning' : 'secondary'}
                 fullWidth={true}
                 onClick={() => {
-                    ButtonClicked(buttonText, true, isEqualSign)
+                    ButtonClicked(
+                        buttonText,
+                        true,
+                        isEqualSign,
+                        setDisplayNumber,
+                        displayNumber
+                    )
                 }}
             >
                 {buttonText}
@@ -77,11 +87,36 @@ function ButtonClicked(
     console.log(`Button ${text}  has been clicked`)
     console.log(`Button ${text} is operator: ${isOperator}`)
     console.log(`Button ${text} is the equal button: ${isEqualSign}`)
+    let currentNumberAsString = displayNumber?.toString()
+    if (currentNumberAsString === undefined) {
+        return
+    }
+    let currentNumberAsInt = parseInt(currentNumberAsString)
 
     // Guard cases
     if (isEqualSign) {
     }
+    if (text === 'AC') {
+        console.log(text)
+        if (setDisplayNumber !== undefined) {
+            setDisplayNumber(0)
+        }
+        return
+    }
     if (isOperator) {
+        switch (text) {
+            case '+ / -':
+                if (currentNumberAsInt !== 0) {
+                    // will turn posative number to negative and vice versa
+                    let newDisplay = currentNumberAsInt * -1
+                    if (setDisplayNumber !== undefined) {
+                        console.log('attempting to change to' + newDisplay)
+                        setDisplayNumber(newDisplay)
+                    }
+                }
+                break
+        }
+        return
     }
     //if we reach here we assume we will have clicked a number and want to add it to the display number
     if (displayNumber === undefined) {
@@ -89,7 +124,7 @@ function ButtonClicked(
         return
     }
     console.log(`Display number is: ${displayNumber}`)
-    let currentNumberAsString = displayNumber?.toString()
+
     console.log(currentNumberAsString)
     let numbersCombinedString = currentNumberAsString + text
     let numbersCombined = parseInt(numbersCombinedString)
@@ -121,6 +156,7 @@ const CalculatorButton = ({
             <FunctionButton
                 buttonText={buttonText}
                 isEqualSign={isEqualSign}
+                setDisplayNumber={setDisplayNumber}
                 displayNumber={displayNumber}
             ></FunctionButton>
         )
