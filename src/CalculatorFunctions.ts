@@ -1,25 +1,22 @@
 class CalculatorFunctions {
-    add(obj: CalculatorFunctionInterface) {
-        return null
+    add(displayNumber: number, previousNumber: number): number {
+        return previousNumber + displayNumber
     }
 
-    subtract(obj: CalculatorFunctionInterface) {
-        return null
+    subtract(displayNumber: number, previousNumber: number): number {
+        return previousNumber - displayNumber
     }
 
-    multiply(obj: CalculatorFunctionInterface) {
-        return null
+    multiply(displayNumber: number, previousNumber: number): number {
+        return previousNumber * displayNumber
     }
 
-    divide(obj: CalculatorFunctionInterface) {
-        return null
-    }
-
-    addNumberInput(obj: CalculatorFunctionInterface) {
-        return obj.currentDisplayNumber.toString() + obj.inputNumber.toString()
+    divide(displayNumber: number, previousNumber: number): number {
+        return displayNumber / previousNumber
     }
 }
 
+// can I use interface to control paramaters for class methods?
 interface CalculatorFunctionInterface {
     inputNumber: number
     currentDisplayNumber: number

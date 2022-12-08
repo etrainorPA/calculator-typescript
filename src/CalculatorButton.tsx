@@ -6,6 +6,7 @@ interface ButtonDeciderProps {
     isEqualSign?: boolean
     setDisplayNumber?: React.Dispatch<React.SetStateAction<number>>
     displayNumber?: number
+    operatorFunction?: Function
 }
 
 interface ButtonProps {
@@ -13,12 +14,14 @@ interface ButtonProps {
     isEqualSign?: boolean
     setDisplayNumber?: React.Dispatch<React.SetStateAction<number>>
     displayNumber?: number
+    operatorFunction?: Function
 }
 
 const NumberButton = ({
     buttonText,
     setDisplayNumber,
     displayNumber,
+    operatorFunction,
 }: ButtonProps) => {
     return (
         <div className="button-container">
@@ -49,6 +52,7 @@ const FunctionButton = ({
     isEqualSign,
     setDisplayNumber,
     displayNumber,
+    operatorFunction,
 }: ButtonProps) => {
     if (isEqualSign === undefined) {
         isEqualSign = false
@@ -67,7 +71,8 @@ const FunctionButton = ({
                         true,
                         isEqualSign,
                         setDisplayNumber,
-                        displayNumber
+                        displayNumber,
+                        operatorFunction
                     )
                 }}
             >
@@ -82,39 +87,53 @@ function ButtonClicked(
     isOperator: boolean,
     isEqualSign?: boolean,
     setDisplayNumber?: React.Dispatch<React.SetStateAction<number>>,
-    displayNumber?: number
+    displayNumber?: number,
+    operatorFunction?: Function
 ) {
     console.log(`Button ${text}  has been clicked`)
     console.log(`Button ${text} is operator: ${isOperator}`)
     console.log(`Button ${text} is the equal button: ${isEqualSign}`)
     let currentNumberAsString = displayNumber?.toString()
     if (currentNumberAsString === undefined) {
+        console.log(`currentNumber as string not defined!!!`)
         return
     }
     let currentNumberAsInt = parseInt(currentNumberAsString)
 
     // Guard cases
-    if (isEqualSign) {
+    if (isEqualSign === true) {
+        //! Should be calling the Equals function
+        console.log('Equals sign pressed!')
+        if (operatorFunction !== undefined) {
+            operatorFunction(true)
+        }
+        return
     }
     if (text === 'AC') {
         console.log(text)
-        if (setDisplayNumber !== undefined) {
-            setDisplayNumber(0)
+        //! This should be the Clear function
+        if (operatorFunction !== undefined) {
+            operatorFunction()
         }
         return
     }
     if (isOperator) {
-        switch (text) {
-            case '+ / -':
-                if (currentNumberAsInt !== 0) {
-                    // will turn posative number to negative and vice versa
-                    let newDisplay = currentNumberAsInt * -1
-                    if (setDisplayNumber !== undefined) {
-                        console.log('attempting to change to' + newDisplay)
-                        setDisplayNumber(newDisplay)
-                    }
+        console.log('attempting operator button function')
+        if (text === '+ / -') {
+            if (currentNumberAsInt !== 0) {
+                // will turn posative number to negative and vice versa
+                let newDisplay = currentNumberAsInt * -1
+                if (setDisplayNumber !== undefined) {
+                    console.log('attempting to change to ' + newDisplay)
+                    setDisplayNumber(newDisplay)
                 }
-                break
+            }
+        } else {
+            //
+            if (operatorFunction !== undefined) {
+                console.log('calling operator function!')
+                operatorFunction(text)
+            }
         }
         return
     }
@@ -142,7 +161,9 @@ const CalculatorButton = ({
     isEqualSign,
     setDisplayNumber,
     displayNumber,
+    operatorFunction,
 }: ButtonDeciderProps) => {
+    //? should I refactor
     if (isNumber) {
         return (
             <NumberButton
@@ -158,6 +179,7 @@ const CalculatorButton = ({
                 isEqualSign={isEqualSign}
                 setDisplayNumber={setDisplayNumber}
                 displayNumber={displayNumber}
+                operatorFunction={operatorFunction}
             ></FunctionButton>
         )
     }

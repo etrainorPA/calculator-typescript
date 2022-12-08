@@ -1,13 +1,74 @@
-import { Box, Grid, TextField } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { useState } from 'react'
 import CalculatorButton from './CalculatorButton'
 import './Calculator.css'
 import CalculatorDisplay from './CalculatorDisplay'
+import CalculatorFunctions from './CalculatorFunctions'
 
 // Body will be the parent that will hold all component children
 function CalculatorBody() {
     const [displayNumber, setDisplayNumber] = useState(0)
-    const [inputNumber, setInputNumber] = useState(0)
+    const [previousNumber, setPreviousNumber] = useState(0)
+    const [activeOperator, setActiveOperator] = useState('')
+    const [isDecimalActive, setIsDecimalActive] = useState(false)
+    const calcFuncs = new CalculatorFunctions()
+
+    function Clear(): void {
+        console.log('Clear called!')
+        setDisplayNumber(0)
+        setPreviousNumber(0)
+        setActiveOperator('')
+        setIsDecimalActive(false)
+    }
+
+    function Equals(isCalledFromEqualButton: boolean): void {
+        console.log(
+            'Equals function called. From equals button: ' +
+                isCalledFromEqualButton
+        )
+        let result: number = 0
+        switch (activeOperator) {
+            case '+':
+                result = calcFuncs.add(previousNumber, displayNumber)
+                break
+            case '-':
+                result = calcFuncs.subtract(displayNumber, previousNumber)
+                break
+            case '/':
+                result = calcFuncs.divide(previousNumber, displayNumber)
+                break
+            case 'x':
+                result = calcFuncs.multiply(previousNumber, displayNumber)
+                break
+            default:
+                console.log('equals function called with no operator')
+        }
+
+        if (isCalledFromEqualButton) {
+            setActiveOperator('')
+            setPreviousNumber(0)
+            setDisplayNumber(result)
+        } else {
+            console.log('is false')
+            setPreviousNumber(result)
+            setDisplayNumber(0)
+        }
+        //TODO: Add result to the history section
+    }
+
+    function UseCalculatorOperators(symbol: string): void {
+        console.log('Operator functions called! Using symbol ' + symbol)
+        setActiveOperator(symbol)
+        if (previousNumber !== 0 && displayNumber !== 0) {
+            //! If both of these are set then we need to do an equal on these 2 numbers
+            Equals(false)
+            return
+        }
+        if (displayNumber !== 0) {
+            setPreviousNumber(displayNumber)
+            setDisplayNumber(0)
+        }
+    }
     return (
         <div
             id="calculator-body"
@@ -65,7 +126,9 @@ function CalculatorBody() {
                                 <CalculatorButton
                                     buttonText="+"
                                     isNumber={false}
+                                    setDisplayNumber={setDisplayNumber}
                                     displayNumber={displayNumber}
+                                    operatorFunction={UseCalculatorOperators}
                                 ></CalculatorButton>
                             </Grid>
                         </Grid>
@@ -102,6 +165,7 @@ function CalculatorBody() {
                                     isNumber={false}
                                     setDisplayNumber={setDisplayNumber}
                                     displayNumber={displayNumber}
+                                    operatorFunction={UseCalculatorOperators}
                                 ></CalculatorButton>
                             </Grid>
                         </Grid>
@@ -136,6 +200,9 @@ function CalculatorBody() {
                                 <CalculatorButton
                                     buttonText="x"
                                     isNumber={false}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
+                                    operatorFunction={UseCalculatorOperators}
                                 ></CalculatorButton>
                             </Grid>
                         </Grid>
@@ -155,6 +222,8 @@ function CalculatorBody() {
                                     buttonText="="
                                     isNumber={false}
                                     isEqualSign={true}
+                                    displayNumber={displayNumber}
+                                    operatorFunction={Equals}
                                 ></CalculatorButton>
                             </Grid>
                             <Grid item xs={3}>
@@ -169,18 +238,28 @@ function CalculatorBody() {
                                 <CalculatorButton
                                     buttonText="/"
                                     isNumber={false}
+                                    setDisplayNumber={setDisplayNumber}
+                                    displayNumber={displayNumber}
+                                    operatorFunction={UseCalculatorOperators}
                                 ></CalculatorButton>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={12} minHeight={75}>
                         <Grid container>
-                            <Grid item xs={12}>
+                            <Grid item xs={8}>
                                 <CalculatorButton
                                     buttonText="AC"
                                     isNumber={false}
                                     setDisplayNumber={setDisplayNumber}
                                     displayNumber={displayNumber}
+                                    operatorFunction={Clear}
+                                ></CalculatorButton>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <CalculatorButton
+                                    buttonText="."
+                                    isNumber={false}
                                 ></CalculatorButton>
                             </Grid>
                         </Grid>
