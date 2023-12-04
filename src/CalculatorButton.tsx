@@ -90,12 +90,12 @@ function ButtonClicked(
     displayNumber?: number,
     operatorFunction?: Function
 ) {
-    console.log(`Button ${text}  has been clicked`)
-    console.log(`Button ${text} is operator: ${isOperator}`)
-    console.log(`Button ${text} is the equal button: ${isEqualSign}`)
+    // console.log(`Button ${text}  has been clicked`)
+    // console.log(`Button ${text} is operator: ${isOperator}`)
+    // console.log(`Button ${text} is the equal button: ${isEqualSign}`)
     let currentNumberAsString = displayNumber?.toString()
     if (currentNumberAsString === undefined) {
-        console.log(`currentNumber as string not defined!!!`)
+        // console.log(`currentNumber as string not defined!!!`)
         return
     }
     let currentNumberAsInt = parseInt(currentNumberAsString)
@@ -110,7 +110,7 @@ function ButtonClicked(
         return
     }
     if (text === 'AC') {
-        console.log(text)
+        // console.log(text)
         //! This should be the Clear function
         if (operatorFunction !== undefined) {
             operatorFunction()
@@ -118,20 +118,20 @@ function ButtonClicked(
         return
     }
     if (isOperator) {
-        console.log('attempting operator button function')
+        // console.log('attempting operator button function')
         if (text === '+ / -') {
             if (currentNumberAsInt !== 0) {
                 // will turn posative number to negative and vice versa
                 let newDisplay = currentNumberAsInt * -1
                 if (setDisplayNumber !== undefined) {
-                    console.log('attempting to change to ' + newDisplay)
+                    // console.log('attempting to change to ' + newDisplay)
                     setDisplayNumber(newDisplay)
                 }
             }
         } else {
             //
             if (operatorFunction !== undefined) {
-                console.log('calling operator function!')
+                // console.log('calling operator function!')
                 operatorFunction(text)
             }
         }
@@ -139,19 +139,19 @@ function ButtonClicked(
     }
     //if we reach here we assume we will have clicked a number and want to add it to the display number
     if (displayNumber === undefined) {
-        console.log('display number not defined')
+        // console.log('display number not defined')
         return
     }
-    console.log(`Display number is: ${displayNumber}`)
+    // console.log(`Display number is: ${displayNumber}`)
 
     console.log(currentNumberAsString)
     let numbersCombinedString = currentNumberAsString + text
     let numbersCombined = parseInt(numbersCombinedString)
     if (setDisplayNumber === undefined) {
-        console.log('undefined - returned')
+        // console.log('undefined - returned')
         return
     }
-    console.log(numbersCombined)
+    // console.log(numbersCombined)
     setDisplayNumber(numbersCombined)
 }
 

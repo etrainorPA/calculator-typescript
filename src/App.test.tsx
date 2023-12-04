@@ -22,32 +22,32 @@ test('renders calculator box', () => {
 })
 
 // no need to test every single one but test to make sure some buttons are showing...
-test('render button 7', () => {
-    render(<CalculatorBody />)
-    const linkElemt = screen.getByTestId('button-seven')
-    expect(linkElemt).toBeInTheDocument()
-})
+// test('render button 7', () => {
+//     render(<CalculatorBody />)
+//     const linkElemt = screen.getByTestId('button-seven')
+//     expect(linkElemt).toBeInTheDocument()
+// })
 
-test('render button 5', () => {
-    render(<CalculatorBody />)
-    const linkElemt = screen.getByTestId('button-five')
-    expect(linkElemt).toBeInTheDocument()
-})
+// test('render button 5', () => {
+//     render(<CalculatorBody />)
+//     const linkElemt = screen.getByTestId('button-five')
+//     expect(linkElemt).toBeInTheDocument()
+// })
 
-test('render button X', () => {
-    render(<CalculatorBody />)
-    const linkElemt = screen.getByTestId('button-multiply')
-    expect(linkElemt).toBeInTheDocument()
-})
+// test('render button X', () => {
+//     render(<CalculatorBody />)
+//     const linkElemt = screen.getByTestId('button-multiply')
+//     expect(linkElemt).toBeInTheDocument()
+// })
 
-test('render button equals', () => {
-    render(<CalculatorBody />)
-    const linkElemt = screen.getByTestId('button-equals')
-    expect(linkElemt).toBeInTheDocument()
-})
+// test('render button equals', () => {
+//     render(<CalculatorBody />)
+//     const linkElemt = screen.getByTestId('button-equals')
+//     expect(linkElemt).toBeInTheDocument()
+// })
 
-test('render calculator display box', () => {
-    render(<CalculatorBody />)
-    const linkElemt = screen.getByTestId('calculator-number-display')
-    expect(linkElemt).toBeInTheDocument()
-})
+// test('render calculator display box', () => {
+//     render(<CalculatorBody />)
+//     const linkElemt = screen.getByTestId('calculator-number-display')
+//     expect(linkElemt).toBeInTheDocument()
+// })

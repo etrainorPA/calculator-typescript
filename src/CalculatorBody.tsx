@@ -5,16 +5,22 @@ import './Calculator.css'
 import CalculatorDisplay from './CalculatorDisplay'
 import CalculatorFunctions from './CalculatorFunctions'
 
+interface CalculatorBodyProps {
+    setHistoryNumbersFunction: (n: number) => void
+}
+
 // Body will be the parent that will hold all component children
-function CalculatorBody() {
+function CalculatorBody({ setHistoryNumbersFunction }: CalculatorBodyProps) {
     const [displayNumber, setDisplayNumber] = useState(0)
     const [previousNumber, setPreviousNumber] = useState(0)
     const [activeOperator, setActiveOperator] = useState('')
     const [isDecimalActive, setIsDecimalActive] = useState(false)
     const calcFuncs = new CalculatorFunctions()
 
+    console.log('calculator body rendered!')
+
     function Clear(): void {
-        console.log('Clear called!')
+        // console.log('Clear called!')
         setDisplayNumber(0)
         setPreviousNumber(0)
         setActiveOperator('')
@@ -22,10 +28,10 @@ function CalculatorBody() {
     }
 
     function Equals(isCalledFromEqualButton: boolean): void {
-        console.log(
-            'Equals function called. From equals button: ' +
-                isCalledFromEqualButton
-        )
+        // console.log(
+        //     'Equals function called. From equals button: ' +
+        //         isCalledFromEqualButton
+        // )
         let result: number = 0
         switch (activeOperator) {
             case '+':
@@ -41,23 +47,24 @@ function CalculatorBody() {
                 result = calcFuncs.multiply(previousNumber, displayNumber)
                 break
             default:
-                console.log('equals function called with no operator')
+            // console.log('equals function called with no operator')
         }
 
         if (isCalledFromEqualButton) {
             setActiveOperator('')
             setPreviousNumber(0)
             setDisplayNumber(result)
+            //now add this to history
+            setHistoryNumbersFunction(result)
         } else {
-            console.log('is false')
+            // console.log('is false')
             setPreviousNumber(result)
             setDisplayNumber(0)
         }
-        //TODO: Add result to the history section
     }
 
     function UseCalculatorOperators(symbol: string): void {
-        console.log('Operator functions called! Using symbol ' + symbol)
+        // console.log('Operator functions called! Using symbol ' + symbol)
         setActiveOperator(symbol)
         if (previousNumber !== 0 && displayNumber !== 0) {
             //! If both of these are set then we need to do an equal on these 2 numbers
